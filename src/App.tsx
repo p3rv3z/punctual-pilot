@@ -1,7 +1,7 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
+import { ActionButtonsRow, Content, NotePreviewList, RootLayout, Sidebar } from "./components";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -13,41 +13,13 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1>Welcome to Tauri!</h1>
-
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-        <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-
-      <p>{greetMsg}</p>
-    </div>
+    <RootLayout>
+      <Sidebar className="p-2">
+        <ActionButtonsRow className="flex justify-between mt-1" />
+        <NotePreviewList className="mt-3 space-y-2" />
+      </Sidebar>
+      <Content className="border-l bg-zinc-900/50 border-l-white/20">Content</Content>
+    </RootLayout>
   );
 }
 
